@@ -51,11 +51,11 @@
       if (exp) {
         $full.addClass('mpc-hidden');
         $ep.show();
-        $btn.attr('aria-expanded', 'false').find('.mpc-read-more-text').text('مشاهده بیشتر ↓');
+        $btn.attr('aria-expanded', 'false').find('.mpc-read-more-text').text('مشاهده بیشتر');
       } else {
         $full.removeClass('mpc-hidden');
         $ep.hide();
-        $btn.attr('aria-expanded', 'true').find('.mpc-read-more-text').text('بستن ↑');
+        $btn.attr('aria-expanded', 'true').find('.mpc-read-more-text').text('بستن');
       }
     });
 

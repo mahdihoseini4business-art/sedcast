@@ -7,7 +7,7 @@ add_action( 'save_post_mpc_episode', 'mpc_save_episode_meta', 10, 2 );
 function mpc_add_meta_boxes() {
     add_meta_box(
         'mpc_episode_details',
-        '🎙 اطلاعات اپیزود',
+        'اطلاعات اپیزود',
         'mpc_episode_details_cb',
         'mpc_episode',
         'normal',
@@ -16,7 +16,7 @@ function mpc_add_meta_boxes() {
 
     add_meta_box(
         'mpc_episode_season',
-        '📂 فصل',
+        'فصل',
         'mpc_episode_season_cb',
         'mpc_episode',
         'side',
@@ -25,7 +25,7 @@ function mpc_add_meta_boxes() {
 
     add_meta_box(
         'mpc_episode_seo',
-        '🔍 سئو و اشتراک‌گذاری',
+        'سئو و اشتراک‌گذاری',
         'mpc_episode_seo_cb',
         'mpc_episode',
         'normal',

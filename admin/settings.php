@@ -19,15 +19,15 @@ function mpc_render_settings_page() {
     if ( ! current_user_can('manage_options') ) return;
     ?>
     <div class="wrap mpc-settings-wrap" dir="rtl">
-        <h1>⚙️ تنظیمات پادکست</h1>
+        <h1>تنظیمات پادکست</h1>
         <form method="post" action="options.php">
             <?php settings_fields('mpc_settings_group'); ?>
 
             <div class="mpc-settings-tabs">
-                <button type="button" class="mpc-tab-btn active" data-tab="appearance">🎨 ظاهر</button>
-                <button type="button" class="mpc-tab-btn" data-tab="podcast">🎙 اطلاعات پادکست</button>
-                <button type="button" class="mpc-tab-btn" data-tab="display">📋 نمایش</button>
-                <button type="button" class="mpc-tab-btn" data-tab="shortcode">🔧 شورت‌کد</button>
+                <button type="button" class="mpc-tab-btn active" data-tab="appearance">ظاهر</button>
+                <button type="button" class="mpc-tab-btn" data-tab="podcast">اطلاعات پادکست</button>
+                <button type="button" class="mpc-tab-btn" data-tab="display">نمایش</button>
+                <button type="button" class="mpc-tab-btn" data-tab="shortcode">شورت‌کد</button>
             </div>
 
             <!-- Appearance Tab -->

@@ -71,11 +71,11 @@ function mpc_render_shortcode( $atts ) {
                 <span class="mpc-sticky-season" id="mpc-sticky-season"></span>
             </div>
             <div class="mpc-sticky-controls">
-                <button class="mpc-ctrl mpc-ctrl-prev"  id="mpc-prev"  aria-label="قبلی">⏮</button>
-                <button class="mpc-ctrl mpc-ctrl-rw"    id="mpc-rw"    aria-label="۱۵ ثانیه عقب">⏪</button>
-                <button class="mpc-ctrl mpc-ctrl-play"  id="mpc-play"  aria-label="پخش / توقف">▶</button>
-                <button class="mpc-ctrl mpc-ctrl-fw"    id="mpc-fw"    aria-label="۱۵ ثانیه جلو">⏩</button>
-                <button class="mpc-ctrl mpc-ctrl-next"  id="mpc-next"  aria-label="بعدی">⏭</button>
+                <button class="mpc-ctrl mpc-ctrl-prev"  id="mpc-prev"  aria-label="قبلی"><span class="mpc-icon-prev"></span></button>
+                <button class="mpc-ctrl mpc-ctrl-rw"    id="mpc-rw"    aria-label="۱۵ ثانیه عقب"><span class="mpc-icon-rw"></span><span class="mpc-ctrl-label">۱۵</span></button>
+                <button class="mpc-ctrl mpc-ctrl-play"  id="mpc-play"  aria-label="پخش / توقف"><span class="mpc-icon-play"></span></button>
+                <button class="mpc-ctrl mpc-ctrl-fw"    id="mpc-fw"    aria-label="۱۵ ثانیه جلو"><span class="mpc-icon-fw"></span><span class="mpc-ctrl-label">۱۵</span></button>
+                <button class="mpc-ctrl mpc-ctrl-next"  id="mpc-next"  aria-label="بعدی"><span class="mpc-icon-next"></span></button>
             </div>
             <div class="mpc-sticky-progress">
                 <span class="mpc-time-current" id="mpc-time-current">0:00</span>
@@ -93,9 +93,9 @@ function mpc_render_shortcode( $atts ) {
                     <option value="1.5">۱.۵×</option>
                     <option value="2">۲×</option>
                 </select>
-                <button class="mpc-ctrl mpc-ctrl-volume" id="mpc-mute" aria-label="صدا">🔊</button>
+                <button class="mpc-ctrl mpc-ctrl-volume" id="mpc-mute" aria-label="صدا"><span class="mpc-icon-volume"></span></button>
                 <input type="range" id="mpc-volume" min="0" max="1" step="0.05" value="1" aria-label="صدا">
-                <button class="mpc-ctrl" id="mpc-close-player" aria-label="بستن پلیر">✕</button>
+                <button class="mpc-ctrl" id="mpc-close-player" aria-label="بستن پلیر"><span class="mpc-icon-close"></span></button>
             </div>
         </div>
         <audio id="mpc-audio-engine" preload="none"></audio>
@@ -110,7 +110,7 @@ function mpc_render_search_bar( $atts ) {
     ?>
     <div class="mpc-toolbar" dir="rtl">
         <div class="mpc-search-wrap">
-            <span class="mpc-search-icon">🔍</span>
+            <span class="mpc-search-icon"><span class="mpc-icon-search"></span></span>
             <input type="search" id="mpc-search-input" placeholder="جستجو در اپیزودها..."
                    autocomplete="off" aria-label="جستجو">
         </div>
@@ -137,7 +137,8 @@ function mpc_render_search_bar( $atts ) {
         </div>
     </div>
     <div id="mpc-no-results" class="mpc-no-results mpc-hidden">
-        <p>🔍 اپیزودی با این مشخصات یافت نشد.</p>
+        <div class="mpc-no-results-icon"><span class="mpc-icon-search-large"></span></div>
+        <p>اپیزودی با این مشخصات یافت نشد.</p>
     </div>
     <?php
 }
@@ -166,7 +167,7 @@ function mpc_render_latest_episode() {
          data-cover="<?php echo esc_url($cover); ?>"
          data-title="<?php echo esc_attr($ep->post_title); ?>"
          data-season="<?php echo esc_attr($season_name); ?>">
-        <div class="mpc-latest-badge">✨ آخرین اپیزود</div>
+        <div class="mpc-latest-badge">آخرین اپیزود</div>
         <div class="mpc-latest-inner">
             <div class="mpc-latest-cover">
                 <img src="<?php echo esc_url($cover); ?>" alt="<?php echo esc_attr($ep->post_title); ?>" loading="lazy">
@@ -177,7 +178,7 @@ function mpc_render_latest_episode() {
                         data-season="<?php echo esc_attr($season_name); ?>"
                         data-ep-id="<?php echo $ep->ID; ?>"
                         aria-label="پخش <?php echo esc_attr($ep->post_title); ?>">
-                    <span class="mpc-play-icon">▶</span>
+                    <span class="mpc-play-icon"><span class="mpc-icon-play"></span></span>
                 </button>
             </div>
             <div class="mpc-latest-info">
@@ -193,9 +194,9 @@ function mpc_render_latest_episode() {
                 <p class="mpc-latest-excerpt"><?php echo wp_trim_words(get_the_excerpt($ep), 25); ?></p>
                 <div class="mpc-latest-meta">
                     <?php if ($duration): ?>
-                        <span class="mpc-duration">⏱ <?php echo esc_html($duration); ?></span>
+                        <span class="mpc-duration"><span class="mpc-icon-clock"></span> <?php echo esc_html($duration); ?></span>
                     <?php endif; ?>
-                    <span class="mpc-date">📅 <?php echo get_the_date('j F Y', $ep->ID); ?></span>
+                    <span class="mpc-date"><span class="mpc-icon-calendar"></span> <?php echo get_the_date('j F Y', $ep->ID); ?></span>
                 </div>
             </div>
         </div>
@@ -293,7 +294,7 @@ function mpc_render_episode_row( $ep, $season = null ) {
                     data-season="<?php echo esc_attr($season_name); ?>"
                     data-ep-id="<?php echo $ep->ID; ?>"
                     aria-label="پخش <?php echo esc_attr($ep->post_title); ?>">
-                <span class="mpc-ep-play-icon" aria-hidden="true">▶</span>
+                <span class="mpc-ep-play-icon" aria-hidden="true"><span class="mpc-icon-play"></span></span>
             </button>
             <?php endif; ?>
         </div>
@@ -313,7 +314,7 @@ function mpc_render_episode_row( $ep, $season = null ) {
                 <?php if (str_word_count($excerpt) > 20): ?>
                 <button class="mpc-read-more-btn" aria-expanded="false"
                         aria-controls="ep-full-<?php echo $ep->ID; ?>">
-                    <span class="mpc-read-more-text">مشاهده بیشتر ↓</span>
+                    <span class="mpc-read-more-text">مشاهده بیشتر</span>
                 </button>
                 <div class="mpc-ep-full-desc mpc-hidden" id="ep-full-<?php echo $ep->ID; ?>">
                     <p><?php echo esc_html($excerpt); ?></p>
@@ -323,10 +324,10 @@ function mpc_render_episode_row( $ep, $season = null ) {
             <?php endif; ?>
             <div class="mpc-ep-meta">
                 <?php if ($duration): ?>
-                <span class="mpc-ep-duration">⏱ <?php echo esc_html($duration); ?></span>
+                <span class="mpc-ep-duration"><span class="mpc-icon-clock"></span> <?php echo esc_html($duration); ?></span>
                 <?php endif; ?>
-                <span class="mpc-ep-date">📅 <?php echo get_the_date('j F Y', $ep->ID); ?></span>
-                <a href="<?php echo esc_url($permalink); ?>" class="mpc-ep-link">مشاهده کامل ←</a>
+                <span class="mpc-ep-date"><span class="mpc-icon-calendar"></span> <?php echo get_the_date('j F Y', $ep->ID); ?></span>
+                <a href="<?php echo esc_url($permalink); ?>" class="mpc-ep-link">مشاهده کامل</a>
             </div>
         </div>
 

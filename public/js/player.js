@@ -58,7 +58,7 @@
       document.getElementById('mpc-sticky-season').textContent = season || '';
       const img = document.getElementById('mpc-sticky-cover-img');
       if (img) img.src = cover || '';
-      document.getElementById('mpc-play').innerHTML = '⏸';
+      document.getElementById('mpc-play').querySelector('.mpc-icon-play').classList.add('mpc-icon-pause');
     },
 
     _showPlayer: function() {
@@ -103,8 +103,20 @@
         if (total) total.textContent = self._fmtTime(self.audio.duration);
       });
 
-      this.audio.addEventListener('play',  function() { if (play) play.innerHTML = '⏸'; self.isPlaying = true; });
-      this.audio.addEventListener('pause', function() { if (play) play.innerHTML = '▶'; self.isPlaying = false; });
+      this.audio.addEventListener('play',  function() {
+        if (play) {
+          const icon = play.querySelector('.mpc-icon-play');
+          if (icon) icon.classList.add('mpc-icon-pause');
+        }
+        self.isPlaying = true;
+      });
+      this.audio.addEventListener('pause', function() {
+        if (play) {
+          const icon = play.querySelector('.mpc-icon-play');
+          if (icon) icon.classList.remove('mpc-icon-pause');
+        }
+        self.isPlaying = false;
+      });
       this.audio.addEventListener('ended', function() { self.playNext(); });
 
       this.audio.addEventListener('error', function() {
@@ -140,13 +152,19 @@
       // Volume
       document.getElementById('mpc-volume')?.addEventListener('input', function() {
         self.audio.volume = parseFloat(this.value);
-        document.getElementById('mpc-mute').textContent = self.audio.volume === 0 ? '🔇' : '🔊';
+        const icon = document.getElementById('mpc-mute')?.querySelector('.mpc-icon-volume');
+        if (icon) {
+          icon.classList.toggle('mpc-icon-muted', self.audio.volume === 0);
+        }
       });
 
       // Mute toggle
       document.getElementById('mpc-mute')?.addEventListener('click', function() {
         self.audio.muted = !self.audio.muted;
-        this.textContent = self.audio.muted ? '🔇' : '🔊';
+        const icon = this.querySelector('.mpc-icon-volume');
+        if (icon) {
+          icon.classList.toggle('mpc-icon-muted', self.audio.muted);
+        }
       });
 
       // Close player
