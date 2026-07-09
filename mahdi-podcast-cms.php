@@ -31,6 +31,18 @@ require_once MPC_DIR . 'admin/settings.php';
 register_activation_hook( __FILE__, 'mpc_activate' );
 register_deactivation_hook( __FILE__, 'mpc_deactivate' );
 
+// Flush rewrite rules on version change (fixes 404 on single pages / archives)
+add_action( 'init', 'mpc_maybe_flush_rewrite' );
+function mpc_maybe_flush_rewrite() {
+    $stored = get_option( 'mpc_version', '0' );
+    if ( $stored !== MPC_VERSION ) {
+        mpc_register_post_types();
+        mpc_register_taxonomies();
+        flush_rewrite_rules();
+        update_option( 'mpc_version', MPC_VERSION );
+    }
+}
+
 function mpc_activate() {
     mpc_register_post_types();
     mpc_register_taxonomies();
@@ -113,8 +125,9 @@ function mpc_enqueue_admin( $hook ) {
     $screens = [ 'post.php', 'post-new.php', 'edit.php', 'toplevel_page_mpc-settings' ];
     $is_mpc  = isset( $_GET['post_type'] ) && $_GET['post_type'] === 'mpc_episode';
     $is_post = get_post_type( get_the_ID() ) === 'mpc_episode';
+    $is_settings = isset( $_GET['page'] ) && $_GET['page'] === 'mpc-settings';
 
-    if ( ! in_array( $hook, $screens ) && ! $is_mpc && ! $is_post ) return;
+    if ( ! in_array( $hook, $screens ) && ! $is_mpc && ! $is_post && ! $is_settings ) return;
 
     wp_enqueue_media();
 

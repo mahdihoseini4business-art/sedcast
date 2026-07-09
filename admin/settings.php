@@ -11,8 +11,14 @@ function mpc_register_settings() {
         'podcast_email', 'podcast_category', 'podcast_language',
     ];
     foreach ($fields as $f) {
-        register_setting( 'mpc_settings_group', 'mpc_' . $f );
+        register_setting( 'mpc_settings_group', 'mpc_' . $f, [
+            'sanitize_callback' => 'mpc_sanitize_setting',
+        ] );
     }
+}
+
+function mpc_sanitize_setting( $value ) {
+    return is_array( $value ) ? array_map( 'sanitize_text_field', $value ) : sanitize_text_field( $value );
 }
 
 function mpc_render_settings_page() {
