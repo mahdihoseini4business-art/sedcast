@@ -1,0 +1,62 @@
+/* Mahdi Podcast CMS — Admin Styles */
+
+.mpc-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 8px 0;
+}
+
+.mpc-meta-row { display: flex; flex-direction: column; gap: 6px; }
+.mpc-meta-row.mpc-full { grid-column: 1 / -1; }
+
+.mpc-meta-row label {
+  font-weight: 600;
+  font-size: 13px;
+  color: #3c434a;
+}
+
+.mpc-audio-field {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.mpc-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 400 !important;
+}
+
+.mpc-img-preview img { max-width: 200px; border-radius: 6px; margin-top: 8px; }
+
+.mpc-settings-wrap { direction: rtl; font-family: 'Tahoma', sans-serif; }
+
+.mpc-settings-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ddd;
+}
+
+.mpc-tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #555;
+  margin-bottom: -2px;
+  transition: color .2s, border-color .2s;
+}
+
+.mpc-tab-btn:hover { color: #C9A84C; }
+.mpc-tab-btn.active { color: #C9A84C; border-bottom-color: #C9A84C; font-weight: 600; }
+
+@media (max-width: 782px) {
+  .mpc-meta-grid { grid-template-columns: 1fr; }
+}

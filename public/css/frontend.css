@@ -1,0 +1,677 @@
+/* ============================================================
+   Mahdi Podcast CMS — Frontend Styles
+   ============================================================ */
+
+:root {
+  --mpc-gold:        #C9A84C;
+  --mpc-gold-light:  #e0c370;
+  --mpc-gold-dark:   #a8832a;
+  --mpc-cream:       #F5F0E8;
+  --mpc-cream-dark:  #ede6d6;
+  --mpc-dark:        #1a1a1a;
+  --mpc-dark-2:      #242424;
+  --mpc-dark-3:      #2e2e2e;
+  --mpc-text:        #2c2c2c;
+  --mpc-text-muted:  #777;
+  --mpc-border:      #e8e0d0;
+  --mpc-radius:      12px;
+  --mpc-radius-sm:   6px;
+  --mpc-shadow:      0 4px 20px rgba(0,0,0,.08);
+  --mpc-shadow-lg:   0 8px 40px rgba(0,0,0,.14);
+  --mpc-trans:       .22s cubic-bezier(.4,0,.2,1);
+  --mpc-font:        'Vazirmatn', 'Tahoma', sans-serif;
+}
+
+/* ── Base ──────────────────────────────────────────────────── */
+.mpc-podcast-wrapper *,
+.mpc-toolbar *,
+.mpc-latest *,
+.mpc-sticky-player * {
+  box-sizing: border-box;
+}
+
+.mpc-podcast-wrapper,
+.mpc-toolbar,
+.mpc-latest {
+  font-family: var(--mpc-font);
+  color: var(--mpc-text);
+  direction: rtl;
+}
+
+.mpc-hidden { display: none !important; }
+
+/* ── Toolbar ────────────────────────────────────────────────── */
+.mpc-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.mpc-search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+}
+
+.mpc-search-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+}
+
+#mpc-search-input {
+  width: 100%;
+  padding: 12px 44px 12px 16px;
+  border: 2px solid var(--mpc-border);
+  border-radius: var(--mpc-radius);
+  font-size: 15px;
+  font-family: var(--mpc-font);
+  background: #fff;
+  transition: border-color var(--mpc-trans);
+  direction: rtl;
+  outline: none;
+}
+
+#mpc-search-input:focus {
+  border-color: var(--mpc-gold);
+  box-shadow: 0 0 0 3px rgba(201,168,76,.15);
+}
+
+.mpc-filter-wrap select,
+.mpc-sort-wrap select {
+  padding: 11px 14px;
+  border: 2px solid var(--mpc-border);
+  border-radius: var(--mpc-radius);
+  font-size: 14px;
+  font-family: var(--mpc-font);
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--mpc-trans);
+  direction: rtl;
+}
+
+.mpc-filter-wrap select:focus,
+.mpc-sort-wrap select:focus {
+  border-color: var(--mpc-gold);
+}
+
+.mpc-no-results {
+  text-align: center;
+  padding: 40px;
+  color: var(--mpc-text-muted);
+  font-size: 16px;
+}
+
+/* ── Latest Episode ─────────────────────────────────────────── */
+.mpc-latest {
+  position: relative;
+  background: linear-gradient(135deg, var(--mpc-dark) 0%, var(--mpc-dark-3) 100%);
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 40px;
+  overflow: hidden;
+  border: 1px solid rgba(201,168,76,.25);
+  box-shadow: var(--mpc-shadow-lg);
+}
+
+.mpc-latest::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(201,168,76,.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.mpc-latest-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--mpc-gold);
+  color: var(--mpc-dark);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  letter-spacing: .5px;
+}
+
+.mpc-latest-inner {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.mpc-latest-cover {
+  position: relative;
+  flex-shrink: 0;
+  width: 180px;
+  height: 180px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,.4);
+}
+
+.mpc-latest-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mpc-latest-play-btn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.45);
+  border: none;
+  cursor: pointer;
+  transition: background var(--mpc-trans);
+}
+
+.mpc-latest-play-btn:hover { background: rgba(0,0,0,.6); }
+
+.mpc-play-icon {
+  width: 60px; height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--mpc-gold);
+  color: var(--mpc-dark);
+  border-radius: 50%;
+  font-size: 22px;
+  padding-right: 3px;
+  box-shadow: 0 4px 20px rgba(201,168,76,.5);
+  transition: transform var(--mpc-trans), box-shadow var(--mpc-trans);
+}
+
+.mpc-latest-play-btn:hover .mpc-play-icon {
+  transform: scale(1.1);
+  box-shadow: 0 6px 30px rgba(201,168,76,.7);
+}
+
+.mpc-latest-info { flex: 1; }
+
+.mpc-ep-badge,
+.mpc-season-badge,
+.mpc-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-left: 6px;
+  margin-bottom: 10px;
+}
+
+.mpc-ep-badge { background: rgba(201,168,76,.2); color: var(--mpc-gold); }
+.mpc-season-badge { background: rgba(255,255,255,.1); color: rgba(255,255,255,.75); }
+.mpc-badge-num { background: rgba(201,168,76,.15); color: var(--mpc-gold); }
+
+.mpc-latest-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 12px;
+  line-height: 1.4;
+}
+
+.mpc-latest-title a { color: inherit; text-decoration: none; }
+.mpc-latest-title a:hover { color: var(--mpc-gold); }
+
+.mpc-latest-excerpt {
+  color: rgba(255,255,255,.7);
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0 0 16px;
+}
+
+.mpc-latest-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.mpc-duration, .mpc-date, .mpc-ep-date, .mpc-ep-duration {
+  font-size: 13px;
+  color: rgba(255,255,255,.55);
+}
+
+/* ── Season Accordion ───────────────────────────────────────── */
+.mpc-season {
+  border: 1px solid var(--mpc-border);
+  border-radius: var(--mpc-radius);
+  margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: var(--mpc-shadow);
+  transition: box-shadow var(--mpc-trans);
+}
+
+.mpc-season:hover { box-shadow: var(--mpc-shadow-lg); }
+
+.mpc-season-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 28px;
+  background: var(--mpc-cream);
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid transparent;
+  transition: background var(--mpc-trans), border-color var(--mpc-trans);
+}
+
+.mpc-season-header:hover,
+.mpc-season.mpc-open .mpc-season-header {
+  background: var(--mpc-cream-dark);
+  border-bottom-color: var(--mpc-border);
+}
+
+.mpc-season-cover {
+  width: 68px; height: 68px;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 3px 12px rgba(0,0,0,.12);
+}
+
+.mpc-season-cover img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+
+.mpc-season-heading { flex: 1; }
+
+.mpc-season-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.mpc-season-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--mpc-dark);
+  margin: 0 0 4px;
+}
+
+.mpc-season-count {
+  font-size: 13px;
+  color: var(--mpc-text-muted);
+}
+
+.mpc-season-toggle {
+  width: 36px; height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.06);
+  border-radius: 50%;
+  transition: background var(--mpc-trans);
+}
+
+.mpc-season-header:hover .mpc-season-toggle { background: rgba(0,0,0,.1); }
+
+.mpc-chevron {
+  display: inline-block;
+  transition: transform .3s ease;
+  font-size: 14px;
+  color: var(--mpc-text-muted);
+}
+
+.mpc-season.mpc-open .mpc-chevron { transform: rotate(180deg); }
+
+.mpc-season-body { background: #fff; }
+
+.mpc-season-desc {
+  padding: 20px 28px 0;
+  color: var(--mpc-text-muted);
+  font-size: 14px;
+  line-height: 1.8;
+  border-bottom: 1px solid var(--mpc-border);
+  margin-bottom: 0;
+  padding-bottom: 20px;
+}
+
+/* ── Episode Row ────────────────────────────────────────────── */
+.mpc-episode-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 22px 28px;
+  border-bottom: 1px solid var(--mpc-border);
+  transition: background var(--mpc-trans);
+}
+
+.mpc-episode-row:last-child { border-bottom: none; }
+.mpc-episode-row:hover { background: #fafaf8; }
+
+.mpc-episode-row.mpc-playing {
+  background: rgba(201,168,76,.06);
+  border-right: 3px solid var(--mpc-gold);
+}
+
+.mpc-ep-cover-wrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 80px; height: 80px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.mpc-ep-cover {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+
+.mpc-ep-play-btn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.5);
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--mpc-trans);
+}
+
+.mpc-ep-cover-wrap:hover .mpc-ep-play-btn { opacity: 1; }
+
+.mpc-ep-play-icon {
+  width: 36px; height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--mpc-gold);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 14px;
+  padding-right: 2px;
+}
+
+.mpc-ep-info { flex: 1; min-width: 0; }
+
+.mpc-ep-badges { margin-bottom: 6px; }
+
+.mpc-ep-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--mpc-dark);
+  margin: 0 0 8px;
+  line-height: 1.5;
+}
+
+.mpc-ep-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--mpc-trans);
+}
+
+.mpc-ep-title a:hover { color: var(--mpc-gold); }
+
+.mpc-ep-excerpt {
+  font-size: 14px;
+  color: var(--mpc-text-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.mpc-read-more-btn {
+  background: none;
+  border: none;
+  color: var(--mpc-gold);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 4px 0;
+  font-family: var(--mpc-font);
+  font-weight: 600;
+}
+
+.mpc-read-more-btn:hover { text-decoration: underline; }
+
+.mpc-ep-full-desc {
+  font-size: 14px;
+  color: var(--mpc-text-muted);
+  line-height: 1.8;
+  margin-top: 8px;
+  animation: mpc-fade-in .25s ease;
+}
+
+@keyframes mpc-fade-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mpc-ep-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.mpc-ep-duration, .mpc-ep-date {
+  font-size: 13px;
+  color: var(--mpc-text-muted);
+}
+
+.mpc-ep-link {
+  font-size: 13px;
+  color: var(--mpc-gold);
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: auto;
+  transition: color var(--mpc-trans);
+}
+.mpc-ep-link:hover { color: var(--mpc-gold-dark); text-decoration: underline; }
+
+/* ── Sticky Player ──────────────────────────────────────────── */
+.mpc-sticky-player {
+  position: fixed;
+  bottom: 0;
+  right: 0; left: 0;
+  z-index: 99999;
+  background: var(--mpc-dark);
+  border-top: 2px solid var(--mpc-gold);
+  box-shadow: 0 -8px 40px rgba(0,0,0,.4);
+  direction: rtl;
+  font-family: var(--mpc-font);
+  transform: translateY(100%);
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+}
+
+.mpc-sticky-player:not(.mpc-hidden) { transform: translateY(0); }
+
+.mpc-sticky-inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.mpc-sticky-cover {
+  width: 52px; height: 52px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.mpc-sticky-cover img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+
+.mpc-sticky-info {
+  flex-shrink: 0;
+  max-width: 200px;
+  overflow: hidden;
+}
+
+.mpc-sticky-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mpc-sticky-season {
+  display: block;
+  font-size: 12px;
+  color: rgba(255,255,255,.5);
+  margin-top: 2px;
+}
+
+.mpc-sticky-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.mpc-ctrl {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,.7);
+  font-size: 18px;
+  cursor: pointer;
+  width: 40px; height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: color var(--mpc-trans), background var(--mpc-trans);
+}
+
+.mpc-ctrl:hover { color: #fff; background: rgba(255,255,255,.1); }
+
+.mpc-ctrl-play {
+  width: 46px; height: 46px;
+  background: var(--mpc-gold) !important;
+  color: var(--mpc-dark) !important;
+  font-size: 20px;
+}
+
+.mpc-ctrl-play:hover { background: var(--mpc-gold-light) !important; }
+
+.mpc-sticky-progress {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.mpc-time-current, .mpc-time-total {
+  font-size: 12px;
+  color: rgba(255,255,255,.55);
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  min-width: 38px;
+}
+
+.mpc-progress-bar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255,255,255,.15);
+  border-radius: 2px;
+  position: relative;
+  cursor: pointer;
+  transition: height .15s;
+}
+
+.mpc-progress-bar:hover { height: 6px; }
+
+.mpc-progress-fill {
+  height: 100%;
+  background: var(--mpc-gold);
+  border-radius: 2px;
+  width: 0;
+  transition: width .1s linear;
+  pointer-events: none;
+}
+
+.mpc-progress-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--mpc-gold);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .15s;
+}
+
+.mpc-progress-bar:hover .mpc-progress-thumb { opacity: 1; }
+
+.mpc-sticky-extra {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+#mpc-speed {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  color: rgba(255,255,255,.7);
+  border-radius: 6px;
+  padding: 4px 6px;
+  font-size: 12px;
+  font-family: var(--mpc-font);
+  cursor: pointer;
+  outline: none;
+}
+
+#mpc-volume {
+  width: 70px;
+  accent-color: var(--mpc-gold);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .mpc-latest-inner { flex-direction: column; text-align: center; }
+  .mpc-latest-cover { width: 140px; height: 140px; margin: 0 auto; }
+  .mpc-latest-title { font-size: 18px; }
+  .mpc-latest-meta { justify-content: center; }
+
+  .mpc-season-header { padding: 16px 18px; gap: 12px; }
+  .mpc-episode-row   { padding: 16px 18px; gap: 12px; }
+
+  .mpc-ep-cover-wrap { width: 64px; height: 64px; }
+
+  .mpc-sticky-inner  { padding: 8px 14px; gap: 8px; }
+  .mpc-sticky-info   { display: none; }
+  .mpc-sticky-extra  { display: none; }
+  #mpc-prev, #mpc-next { display: none; }
+
+  .mpc-toolbar { gap: 8px; }
+  .mpc-filter-wrap, .mpc-sort-wrap { width: 100%; }
+  .mpc-filter-wrap select, .mpc-sort-wrap select { width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .mpc-latest { padding: 20px; }
+  .mpc-season-cover { display: none; }
+}
