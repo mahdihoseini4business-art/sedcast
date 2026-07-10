@@ -18,7 +18,10 @@ function mpc_register_settings() {
 }
 
 function mpc_sanitize_setting( $value ) {
-    return is_array( $value ) ? array_map( 'sanitize_text_field', $value ) : sanitize_text_field( $value );
+    if ( is_array( $value ) ) {
+        return array_map( 'sanitize_text_field', $value );
+    }
+    return sanitize_text_field( $value );
 }
 
 function mpc_render_settings_page() {
