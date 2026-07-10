@@ -6,13 +6,13 @@
 
 :root {
   /* Color System */
-  --mpc-primary:       #1a1a2e;
-  --mpc-primary-light: #16213e;
-  --mpc-surface:       #ffffff;
-  --mpc-surface-alt:   #f8f9fa;
-  --mpc-accent:        #b8860b;
-  --mpc-accent-light:  #daa520;
-  --mpc-accent-dark:   #8b6914;
+  --mpc-primary:       #1a1a1a;
+  --mpc-primary-light: #1a1a1a;
+  --mpc-surface:       #F5F0E8;
+  --mpc-surface-alt:   #F5F0E8;
+  --mpc-accent:        #C9A84C;
+  --mpc-accent-light:  #C9A84C;
+  --mpc-accent-dark:   #C9A84C;
   --mpc-text:          #1a1a1a;
   --mpc-text-secondary:#6b7280;
   --mpc-text-muted:    #9ca3af;
@@ -35,6 +35,15 @@
   --mpc-radius-lg:     12px;
   --mpc-radius-xl:     16px;
   
+  /* Accent transparency */
+  --mpc-accent-4:      var(--mpc-accent-4);
+  --mpc-accent-10:     var(--mpc-accent-10);
+  --mpc-accent-15:     var(--mpc-accent-15);
+  --mpc-accent-20:     var(--mpc-accent-20);
+  --mpc-accent-30:     var(--mpc-accent-30);
+  --mpc-accent-50:     var(--mpc-accent-50);
+  --mpc-accent-60:     var(--mpc-accent-60);
+
   /* Transitions */
   --mpc-transition:    all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --mpc-transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -132,7 +141,7 @@
 
 #mpc-search-input:focus {
   border-color: var(--mpc-accent);
-  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.1);
+  box-shadow: 0 0 0 3px var(--mpc-accent-10);
 }
 
 .mpc-filter-wrap select,
@@ -162,7 +171,7 @@
 .mpc-filter-wrap select:focus,
 .mpc-sort-wrap select:focus {
   border-color: var(--mpc-accent);
-  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.1);
+  box-shadow: 0 0 0 3px var(--mpc-accent-10);
 }
 
 .mpc-no-results {
@@ -194,7 +203,7 @@
   right: 0;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(184, 134, 11, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--mpc-accent-15) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -205,7 +214,7 @@
   left: 0;
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, rgba(184, 134, 11, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--mpc-accent-10) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -275,13 +284,13 @@
   color: #fff;
   border-radius: 50%;
   font-size: 24px;
-  box-shadow: 0 4px 20px rgba(184, 134, 11, 0.5);
+  box-shadow: 0 4px 20px var(--mpc-accent-50);
   transition: var(--mpc-transition);
 }
 
 .mpc-latest-play-btn:hover .mpc-play-icon {
   transform: scale(1.08);
-  box-shadow: 0 6px 30px rgba(184, 134, 11, 0.6);
+  box-shadow: 0 6px 30px var(--mpc-accent-60);
 }
 
 .mpc-latest-info {
@@ -304,7 +313,7 @@
 }
 
 .mpc-ep-badge {
-  background: rgba(184, 134, 11, 0.2);
+  background: var(--mpc-accent-20);
   color: var(--mpc-accent-light);
 }
 
@@ -314,7 +323,7 @@
 }
 
 .mpc-badge-num {
-  background: rgba(184, 134, 11, 0.15);
+  background: var(--mpc-accent-15);
   color: var(--mpc-accent-light);
 }
 
@@ -494,7 +503,7 @@
 }
 
 .mpc-episode-row.mpc-playing {
-  background: rgba(184, 134, 11, 0.04);
+  background: var(--mpc-accent-4);
   border-right: 3px solid var(--mpc-accent);
 }
 
@@ -651,7 +660,7 @@
   left: 0;
   z-index: 99999;
   background: var(--mpc-primary);
-  border-top: 1px solid rgba(184, 134, 11, 0.3);
+  border-top: 1px solid var(--mpc-accent-30);
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
   direction: rtl;
   font-family: var(--mpc-font);
@@ -813,7 +822,7 @@
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.15s ease;
-  box-shadow: 0 0 0 2px rgba(184, 134, 11, 0.3);
+  box-shadow: 0 0 0 2px var(--mpc-accent-30);
 }
 
 .mpc-progress-bar:hover .mpc-progress-thumb {

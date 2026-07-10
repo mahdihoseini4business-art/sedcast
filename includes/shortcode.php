@@ -21,9 +21,13 @@ function mpc_render_shortcode( $atts ) {
 
     echo '<style>
     :root {
-        --mpc-gold:   ' . esc_attr($primary) . ';
-        --mpc-cream:  ' . esc_attr($accent)  . ';
-        --mpc-dark:   ' . esc_attr($dark)    . ';
+        --mpc-primary:       ' . esc_attr($dark)    . ';
+        --mpc-primary-light: ' . esc_attr($dark)    . ';
+        --mpc-accent:        ' . esc_attr($primary) . ';
+        --mpc-accent-light:  ' . esc_attr($primary) . ';
+        --mpc-accent-dark:   ' . esc_attr($primary) . ';
+        --mpc-surface:       ' . esc_attr($accent)  . ';
+        --mpc-surface-alt:   ' . esc_attr($accent)  . ';
     }
     </style>';
 
